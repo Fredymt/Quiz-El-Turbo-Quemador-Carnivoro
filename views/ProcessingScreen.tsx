@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 
 interface ProcessingScreenProps {
   onComplete: () => void;
+  duration?: number; // Total duration in ms
 }
 
-export const ProcessingScreen: React.FC<ProcessingScreenProps> = ({ onComplete }) => {
+export const ProcessingScreen: React.FC<ProcessingScreenProps> = ({ onComplete, duration = 4500 }) => {
   const [currentMessage, setCurrentMessage] = useState(0);
   const messages = [
     "Analizando tus datos...",
@@ -14,6 +15,9 @@ export const ProcessingScreen: React.FC<ProcessingScreenProps> = ({ onComplete }
   ];
 
   useEffect(() => {
+    // Calculate display time per message roughly
+    const intervalTime = duration / messages.length;
+
     // Cycle through messages
     const messageInterval = setInterval(() => {
       setCurrentMessage((prev) => {
@@ -22,19 +26,18 @@ export const ProcessingScreen: React.FC<ProcessingScreenProps> = ({ onComplete }
         }
         return prev;
       });
-    }, 1500); // Change text every 1.5 seconds
+    }, intervalTime);
 
-    // Complete processing after all messages shown + a small buffer
-    const totalTime = messages.length * 1500 + 500;
+    // Complete processing
     const completeTimeout = setTimeout(() => {
       onComplete();
-    }, totalTime);
+    }, duration);
 
     return () => {
       clearInterval(messageInterval);
       clearTimeout(completeTimeout);
     };
-  }, [onComplete, messages.length]);
+  }, [onComplete, duration, messages.length]);
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center min-h-[60vh] animate-fade-in">
@@ -48,7 +51,7 @@ export const ProcessingScreen: React.FC<ProcessingScreenProps> = ({ onComplete }
       <div className="h-20 flex items-center justify-center">
         <h2 
           key={currentMessage}
-          className="text-2xl md:text-3xl font-bold text-brand-black text-center animate-fade-in"
+          className="text-2xl md:text-3xl font-bold text-brand-black text-center animate-fade-in px-4"
         >
           {messages[currentMessage]}
         </h2>
