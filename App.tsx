@@ -651,7 +651,8 @@ const App: React.FC = () => {
       case AppStep.GENDER:
         return <GenderQuestion onSelect={handleGenderSelect} />;
       case AppStep.AGE:
-        return <AgeQuestion onSelect={handleAgeSelect} />;
+        // Pass the user's selected gender to the AgeQuestion component
+        return <AgeQuestion onSelect={handleAgeSelect} gender={answers.gender} />;
       case AppStep.INFO_WEIGHT:
         return <WeightHealthInfo onContinue={handleInfoContinue} />;
       case AppStep.ACTIVITY:

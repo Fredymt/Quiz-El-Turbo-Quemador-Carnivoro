@@ -30,14 +30,24 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
 
   // --- PERSONALIZATION LOGIC ---
   const gender = userAnswers.gender || 'male';
+  const isFemale = gender === 'female';
   const age = userAnswers.ageRange || '30-39';
   const familiarity = userAnswers.dietFamiliarity || 'beginner';
   const activity = userAnswers.activityLevel || 'moderate';
   const userEmail = userAnswers.email || 'tu-email@ejemplo.com';
   
-  const genderText = gender === 'male' ? 'hombres' : 'mujeres';
+  const genderText = isFemale ? 'mujeres' : 'hombres';
   const ageText = `de ${age} años`;
-  const genderImageColor = gender === 'male' ? 'bg-blue-100' : 'bg-pink-100';
+  const genderImageColor = isFemale ? 'bg-pink-100' : 'bg-blue-100';
+
+  // --- DYNAMIC IMAGES BASED ON GENDER ---
+  const beforeImageSrc = isFemale 
+    ? 'https://i.imgur.com/Z4B4mgk.png' // Female Before
+    : 'https://i.imgur.com/UAAji0y.png'; // Male Before
+
+  const goalImageSrc = isFemale
+    ? 'https://i.imgur.com/KMj9Oo3.png' // Female Goal
+    : 'https://i.imgur.com/juiLUEJ.png'; // Male Goal
 
   const familiarityText = familiarity === 'beginner' 
     ? 'carnívoros principiantes' 
@@ -52,9 +62,6 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
     '4week': { original: 31.99, current: 14.49, name: 'Plan de 4 semanas' },
     '12week': { original: 62.99, current: 29.99, name: 'Plan de 12 semanas' }
   };
-
-  const currentPrice = prices[selectedPlan].current;
-  const originalPrice = prices[selectedPlan].original;
 
   return (
     <div className="w-full flex flex-col items-center bg-white animate-fade-in -mt-20">
@@ -92,7 +99,7 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
             <span className="bg-[#FFE4E4] text-[#B71C1C] px-3 py-1 rounded-full font-bold text-sm mb-3">Ahora</span>
             <div className={`w-full aspect-[3/4] md:w-48 md:h-64 ${genderImageColor} rounded-xl overflow-hidden mb-3 relative`}>
               <img 
-                src="https://i.imgur.com/UAAji0y.png" 
+                src={beforeImageSrc} 
                 alt="Antes" 
                 className="w-full h-full object-cover"
               />
@@ -131,10 +138,11 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
 
           {/* Card 2: Meta */}
           <div className="flex flex-col items-center w-[45%] md:w-auto md:max-w-xs">
-            <span className="bg-[#B71C1C] text-white px-3 py-1 rounded-full font-bold text-sm mb-3">Meta</span>
+            {/* Green Badge for Goal */}
+            <span className="bg-[#00C853] text-white px-3 py-1 rounded-full font-bold text-sm mb-3">Meta</span>
             <div className={`w-full aspect-[3/4] md:w-48 md:h-64 ${genderImageColor} rounded-xl overflow-hidden mb-3 relative`}>
                <img 
-                src="https://i.imgur.com/mm1f0So.png" 
+                src={goalImageSrc} 
                 alt="Tu meta" 
                 className="w-full h-full object-cover"
               />
@@ -144,9 +152,9 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               <div>
                 <span className="block text-xs md:text-sm font-bold text-gray-900">Grasa corporal</span>
                 <span className="block text-xs text-gray-500 mb-1">Bajo</span>
-                {/* Changed to 1 bar filled */}
+                {/* Green bar for Goal */}
                 <div className="flex gap-1">
-                   <div className="h-1.5 flex-1 bg-[#B71C1C] rounded-full"></div>
+                   <div className="h-1.5 flex-1 bg-[#00C853] rounded-full"></div>
                    <div className="h-1.5 flex-1 bg-gray-200 rounded-full"></div>
                    <div className="h-1.5 flex-1 bg-gray-200 rounded-full"></div>
                 </div>
@@ -154,10 +162,11 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               <div>
                  <span className="block text-xs md:text-sm font-bold text-gray-900">Nivel de condición física</span>
                 <span className="block text-xs text-gray-500 mb-1">Avanzado</span>
+                {/* Green Bars */}
                 <div className="flex gap-1">
-                   <div className="h-1.5 flex-1 bg-[#B71C1C] rounded-full"></div>
-                   <div className="h-1.5 flex-1 bg-[#B71C1C] rounded-full"></div>
-                   <div className="h-1.5 flex-1 bg-[#B71C1C] rounded-full"></div>
+                   <div className="h-1.5 flex-1 bg-[#00C853] rounded-full"></div>
+                   <div className="h-1.5 flex-1 bg-[#00C853] rounded-full"></div>
+                   <div className="h-1.5 flex-1 bg-[#00C853] rounded-full"></div>
                 </div>
               </div>
             </div>
@@ -365,7 +374,9 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
              <div className="bg-[#00C853] rounded-full p-0.5 mt-1 flex-shrink-0"><Check size={12} color="white" strokeWidth={4} /></div>
              <div className="flex flex-col">
                <span className="text-[10px] text-gray-500">Perfecto para</span>
-               <span className="text-xs font-bold text-gray-800">Hombres de todas las edades</span>
+               <span className="text-xs font-bold text-gray-800">
+                 {isFemale ? 'Mujeres' : 'Hombres'} de todas las edades
+               </span>
              </div>
            </div>
            <div className="flex gap-3 items-start">
@@ -399,7 +410,8 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
              <span className="font-bold">${prices[selectedPlan].original}</span>
            </div>
            <div className="flex justify-between text-sm mb-4">
-             <span className="text-gray-900">42% de descuento en oferta de lanzamiento</span>
+             {/* Updated Discount Text */}
+             <span className="text-gray-900">55% de descuento en oferta de lanzamiento</span>
              <span className="font-bold text-[#00C853]">-${(prices[selectedPlan].original - prices[selectedPlan].current).toFixed(2)}</span>
            </div>
            <div className="flex justify-between text-lg font-bold border-t border-gray-100 pt-4 text-gray-900">
