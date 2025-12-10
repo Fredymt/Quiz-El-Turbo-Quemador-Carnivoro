@@ -41,13 +41,16 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
   const genderImageColor = isFemale ? 'bg-pink-100' : 'bg-blue-100';
 
   // --- DYNAMIC IMAGES BASED ON GENDER ---
-  const beforeImageSrc = isFemale 
-    ? 'https://i.imgur.com/Z4B4mgk.png' // Female Before
-    : 'https://i.imgur.com/UAAji0y.png'; // Male Before
+  // MALE IMAGES (Restored)
+  const maleBefore = 'https://i.imgur.com/UAAji0y.png';
+  const maleGoal = 'https://i.imgur.com/juiLUEJ.png';
 
-  const goalImageSrc = isFemale
-    ? 'https://i.imgur.com/KMj9Oo3.png' // Female Goal
-    : 'https://i.imgur.com/juiLUEJ.png'; // Male Goal
+  // FEMALE IMAGES
+  const femaleBefore = 'https://i.imgur.com/Z4B4mgk.png';
+  const femaleGoal = 'https://i.imgur.com/KMj9Oo3.png';
+
+  const beforeImageSrc = isFemale ? femaleBefore : maleBefore;
+  const goalImageSrc = isFemale ? femaleGoal : maleGoal;
 
   const familiarityText = familiarity === 'beginner' 
     ? 'carnívoros principiantes' 
@@ -420,8 +423,6 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
            </div>
         </div>
 
-        {/* Removed subscription auto-renewal text */}
-
         {/* --- GUARANTEE (7 Days) --- */}
         <div className="w-full bg-gray-100 rounded-xl p-6 flex gap-4 items-start mb-12">
            <div className="flex-1">
@@ -437,8 +438,6 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
              100% MONEY BACK GUARANTEE
            </div>
         </div>
-
-        {/* --- NO MORE SECTIONS AFTER GUARANTEE --- */}
 
       </div>
     </div>
