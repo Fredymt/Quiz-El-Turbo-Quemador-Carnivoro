@@ -28,6 +28,15 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
+  // --- CHECKOUT LOGIC ---
+  const handleCheckout = () => {
+    if (selectedPlan === '4week') {
+      window.location.href = 'https://pay.hotmart.com/T103355666X?checkoutMode=10';
+    } else {
+      window.location.href = 'https://pay.hotmart.com/T103355666X?off=1r4znshq&checkoutMode=10';
+    }
+  };
+
   // --- PERSONALIZATION LOGIC ---
   const gender = userAnswers.gender || 'male';
   const isFemale = gender === 'female';
@@ -85,7 +94,7 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
             />
          </div>
          <button 
-           onClick={onPurchase} 
+           onClick={handleCheckout} 
            className="bg-[#FFE4E4] text-[#B71C1C] font-bold text-xs md:text-sm px-4 py-2 rounded-full hover:bg-[#FFD4D4] transition-colors"
          >
            Obtenga su plan
@@ -263,7 +272,7 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
 
         {/* --- GREEN CTA BUTTON --- */}
         <Button 
-          onClick={onPurchase}
+          onClick={handleCheckout}
           fullWidth
           className="py-4 text-xl shadow-xl mb-12 rounded-full border-none"
           style={{ backgroundColor: '#00C853' }} // Vibrant Green
@@ -285,7 +294,7 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
              {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="#FFC107" strokeWidth={0} />)}
            </div>
            <p className="text-sm text-gray-700 leading-relaxed mb-6 font-medium">
-             A mi esposo y a mí nos encanta esta aplicación. Nos ayuda a ambos a ser responsables. Hemos perdido 11 kilos. He logrado mi objetivo de pérdida de peso. Recibí respuestas a mis preguntas en una hora.
+             A mi esposo y a mí nos encanta este Método. Nos ayuda a ambos a ser responsables. Hemos perdido 11 kilos. He logrado mi objetivo de pérdida de peso. Recibí respuestas a mis preguntas en una hora.
            </p>
            {/* Image Placeholder for Testimonial */}
            <div className="w-full h-64 bg-gray-300 rounded-xl overflow-hidden relative">
@@ -302,7 +311,7 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
 
         {/* --- SECOND GREEN CTA --- */}
         <Button 
-          onClick={onPurchase}
+          onClick={handleCheckout}
           fullWidth
           className="py-4 text-xl shadow-xl mb-16 rounded-full border-none"
           style={{ backgroundColor: '#00C853' }} // Vibrant Green
@@ -332,14 +341,14 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               </p>
             </div>
 
-            {/* Review 2 */}
+            {/* Review 2 - Changed from Julio to Sammy */}
             <div className="bg-white p-4 rounded-xl shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
-                   <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Julio" />
+                   <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sammy" />
                 </div>
                 <div>
-                  <span className="font-bold text-sm block text-blue-600">Julio</span>
+                  <span className="font-bold text-sm block text-blue-600">Sammy</span>
                   <span className="text-[10px] text-gray-400">recomienda el método Turbo-Quemador Carnívoro</span>
                 </div>
               </div>
