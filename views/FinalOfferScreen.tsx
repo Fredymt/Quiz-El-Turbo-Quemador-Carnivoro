@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '../components/Button';
-import { Check, Star, CheckCircle2 } from 'lucide-react';
+import { Check, Star, CheckCircle2, Utensils, ShoppingCart, Activity } from 'lucide-react';
 import { UserAnswers } from '../types';
 
 interface FinalOfferScreenProps {
@@ -50,11 +50,8 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
   const genderImageColor = isFemale ? 'bg-pink-100' : 'bg-blue-100';
 
   // --- DYNAMIC IMAGES BASED ON GENDER ---
-  // MALE IMAGES (Restored)
   const maleBefore = 'https://i.imgur.com/UAAji0y.png';
   const maleGoal = 'https://i.imgur.com/juiLUEJ.png';
-
-  // FEMALE IMAGES
   const femaleBefore = 'https://i.imgur.com/Z4B4mgk.png';
   const femaleGoal = 'https://i.imgur.com/KMj9Oo3.png';
 
@@ -78,13 +75,11 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
   return (
     <div className="w-full flex flex-col items-center bg-white animate-fade-in -mt-20">
       
-      {/* --- CUSTOM HEADER (Replaces Default) --- */}
-      {/* 1. Red Bar */}
+      {/* --- CUSTOM HEADER --- */}
       <div className="w-screen bg-[#B71C1C] text-white py-3 flex justify-center items-center text-center font-bold sticky top-0 z-[60] shadow-sm text-sm md:text-base">
         <span>Más del 50 % de descuento está reservado para: {formatTime(timeLeft)}</span>
       </div>
       
-      {/* 2. Logo Bar (White) */}
       <div className="w-full bg-white shadow-sm py-2 px-4 md:px-8 flex justify-between items-center z-50 border-b border-gray-100">
          <div className="h-10 md:h-12">
             <img 
@@ -103,20 +98,13 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
 
       <div className="w-full max-w-3xl px-4 md:px-0 flex flex-col items-center pt-6">
 
-        {/* --- HERO: VISUAL COMPARISON (Mobile Side-by-Side) --- */}
+        {/* --- HERO: VISUAL COMPARISON --- */}
         <div className="w-full bg-white rounded-2xl md:p-8 mb-8 flex flex-row gap-2 md:gap-12 items-start justify-center">
-          
-          {/* Card 1: Ahora */}
           <div className="flex flex-col items-center w-[45%] md:w-auto md:max-w-xs">
             <span className="bg-[#FFE4E4] text-[#B71C1C] px-3 py-1 rounded-full font-bold text-sm mb-3">Ahora</span>
             <div className={`w-full aspect-[3/4] md:w-48 md:h-64 ${genderImageColor} rounded-xl overflow-hidden mb-3 relative`}>
-              <img 
-                src={beforeImageSrc} 
-                alt="Antes" 
-                className="w-full h-full object-cover"
-              />
+              <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-cover" />
             </div>
-            
             <div className="w-full space-y-3 text-left">
               <div>
                 <span className="block text-xs md:text-sm font-bold text-gray-900">Grasa corporal</span>
@@ -129,7 +117,6 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               </div>
               <div>
                 <span className="block text-xs md:text-sm font-bold text-gray-900">Nivel de condición física</span>
-                {/* Changed to Bajo and 1 bar */}
                 <span className="block text-xs text-gray-500 mb-1">Bajo</span>
                 <div className="flex gap-1">
                    <div className="h-1.5 flex-1 bg-[#B71C1C] rounded-full"></div>
@@ -140,7 +127,6 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
             </div>
           </div>
 
-          {/* Arrow */}
           <div className="self-center pt-8 md:pt-20 opacity-30">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 md:w-12 md:h-12 text-brand-red">
                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#B71C1C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -148,23 +134,15 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
             </svg>
           </div>
 
-          {/* Card 2: Meta */}
           <div className="flex flex-col items-center w-[45%] md:w-auto md:max-w-xs">
-            {/* Green Badge for Goal */}
             <span className="bg-[#00C853] text-white px-3 py-1 rounded-full font-bold text-sm mb-3">Meta</span>
             <div className={`w-full aspect-[3/4] md:w-48 md:h-64 ${genderImageColor} rounded-xl overflow-hidden mb-3 relative`}>
-               <img 
-                src={goalImageSrc} 
-                alt="Tu meta" 
-                className="w-full h-full object-cover"
-              />
+               <img src={goalImageSrc} alt="Tu meta" className="w-full h-full object-cover" />
             </div>
-            
              <div className="w-full space-y-3 text-left">
               <div>
                 <span className="block text-xs md:text-sm font-bold text-gray-900">Grasa corporal</span>
                 <span className="block text-xs text-gray-500 mb-1">Bajo</span>
-                {/* Green bar for Goal */}
                 <div className="flex gap-1">
                    <div className="h-1.5 flex-1 bg-[#00C853] rounded-full"></div>
                    <div className="h-1.5 flex-1 bg-gray-200 rounded-full"></div>
@@ -174,7 +152,6 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               <div>
                  <span className="block text-xs md:text-sm font-bold text-gray-900">Nivel de condición física</span>
                 <span className="block text-xs text-gray-500 mb-1">Avanzado</span>
-                {/* Green Bars */}
                 <div className="flex gap-1">
                    <div className="h-1.5 flex-1 bg-[#00C853] rounded-full"></div>
                    <div className="h-1.5 flex-1 bg-[#00C853] rounded-full"></div>
@@ -183,19 +160,13 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               </div>
             </div>
           </div>
-
         </div>
 
         {/* --- PURPLE PERSONALIZATION BOX --- */}
         <div className="w-full bg-[#8B5CF6] text-white rounded-xl p-6 md:p-10 text-center mb-10 shadow-lg relative overflow-hidden">
           <div className="relative z-10">
-            <span className="inline-block bg-white/20 px-4 py-1 rounded-full text-xs font-medium mb-4">
-              {userEmail}
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 leading-tight">
-              Tu plan de pérdida de peso personalizado está listo
-            </h2>
-
+            <span className="inline-block bg-white/20 px-4 py-1 rounded-full text-xs font-medium mb-4">{userEmail}</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 leading-tight">Tu plan de pérdida de peso personalizado está listo</h2>
             <div className="flex flex-col gap-3 items-start max-w-md mx-auto">
               <div className="flex items-center gap-3">
                 <div className="bg-white/20 p-1 rounded-full"><CheckCircle2 size={16} /></div>
@@ -217,22 +188,10 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
           </div>
         </div>
 
-        {/* --- HEADLINE --- */}
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-          ¡Obtén resultados visibles en 4 semanas!
-        </h2>
-
         {/* --- PRICING SELECTOR --- */}
+        <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">¡Obtén resultados visibles en 4 semanas!</h2>
         <div className="w-full flex flex-col gap-4 mb-8">
-          
-          {/* Plan 4 Semanas */}
-          <div 
-            onClick={() => setSelectedPlan('4week')}
-            className={`
-              w-full p-6 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all relative
-              ${selectedPlan === '4week' ? 'bg-white border-brand-red shadow-lg transform scale-[1.02]' : 'bg-gray-50 border-transparent hover:bg-gray-100'}
-            `}
-          >
+          <div onClick={() => setSelectedPlan('4week')} className={`w-full p-6 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all relative ${selectedPlan === '4week' ? 'bg-white border-brand-red shadow-lg transform scale-[1.02]' : 'bg-gray-50 border-transparent hover:bg-gray-100'}`}>
             <div className="flex items-center gap-4">
               <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPlan === '4week' ? 'border-brand-red' : 'border-gray-300'}`}>
                 {selectedPlan === '4week' && <div className="w-3 h-3 bg-brand-red rounded-full"></div>}
@@ -244,18 +203,8 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               <span className="text-brand-black font-bold text-xl">${prices['4week'].current}</span>
             </div>
           </div>
-
-          {/* Plan 12 Semanas */}
-          <div 
-            onClick={() => setSelectedPlan('12week')}
-            className={`
-              w-full p-4 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all relative
-              ${selectedPlan === '12week' ? 'bg-[#FFF5F5] border-brand-red' : 'bg-gray-50 border-transparent hover:bg-gray-100'}
-            `}
-          >
-             <div className="absolute -top-3 left-6 bg-[#FF9800] text-white text-[10px] font-bold px-2 py-0.5 rounded">
-                LOS MÁS POPULARES
-             </div>
+          <div onClick={() => setSelectedPlan('12week')} className={`w-full p-4 rounded-xl border-2 cursor-pointer flex items-center justify-between transition-all relative ${selectedPlan === '12week' ? 'bg-[#FFF5F5] border-brand-red' : 'bg-gray-50 border-transparent hover:bg-gray-100'}`}>
+             <div className="absolute -top-3 left-6 bg-[#FF9800] text-white text-[10px] font-bold px-2 py-0.5 rounded">LOS MÁS POPULARES</div>
             <div className="flex items-center gap-4">
               <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPlan === '12week' ? 'border-brand-red' : 'border-gray-300'}`}>
                 {selectedPlan === '12week' && <div className="w-3 h-3 bg-brand-red rounded-full"></div>}
@@ -267,27 +216,81 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
               <span className="text-brand-black font-bold">${prices['12week'].current}</span>
             </div>
           </div>
-
         </div>
 
-        {/* --- GREEN CTA BUTTON --- */}
+        {/* --- FIRST GREEN CTA BUTTON --- */}
         <Button 
           onClick={handleCheckout}
           fullWidth
           className="py-4 text-xl shadow-xl mb-12 rounded-full border-none"
-          style={{ backgroundColor: '#00C853' }} // Vibrant Green
+          style={{ backgroundColor: '#00C853' }}
         >
           Obtener mi plan
         </Button>
 
+        {/* --- NEW SECTION: WHAT YOU GET --- */}
+        <div className="w-full bg-white rounded-3xl p-6 md:p-10 mb-16 border border-gray-100 shadow-sm">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-10 text-center">Lo que obtienes</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Left Column: Text Content */}
+            <div className="space-y-10">
+              <div className="flex gap-5">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600">
+                  <Utensils size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Plan de alimentación personalizado</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Desayuno, almuerzo, cena: todo está planeado para ti en la app. No tienes que perder tiempo contando calorías ni carbohidratos, porque todas las comidas están personalizadas para quemar grasa al instante.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-5">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600">
+                  <ShoppingCart size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Recetas y lista de compras</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Con recetas fáciles y rápidas de preparar, ya no tendrás que preocuparte por qué cenar. Cada plato incluye una lista de ingredientes económicos que puedes encontrar en tu supermercado local. Abre la aplicación en tu teléfono en línea, imprime la lista y aprovisiona tus provisiones para las próximas semanas.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-5">
+                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600">
+                  <Activity size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Rastreador diario</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Ya sea que uses la app en tu teléfono o en línea, registrarás tus consumo de agua y tendrás un recordatorio dinámico a las horas estimadas para que alcances la meta diaria, lo que te brindará información valiosa sobre tu progreso. La app te ayudará a tomar decisiones informadas y a desarrollar nuevos hábitos, gracias a nuestro Coach IA, obtendrás una experiencia única y moderna.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: App Preview Image */}
+            <div className="flex justify-center items-center">
+              <div className="relative max-w-sm w-full">
+                <img 
+                  src="https://i.imgur.com/iK5QWRP.png" 
+                  alt="Vista previa de la App" 
+                  className="w-full h-auto drop-shadow-2xl rounded-[2.5rem]"
+                />
+                {/* Visual accent */}
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#00C853]/10 rounded-full blur-3xl -z-10"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* --- SUCCESS STORY (LUCY) --- */}
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-6 px-4 leading-tight">
-          ¡Nuestros clientes están perdiendo peso con éxito!
-        </h2>
-        
+        <h2 className="text-2xl font-bold text-center text-gray-900 mb-6 px-4 leading-tight">¡Nuestros clientes están perdiendo peso con éxito!</h2>
         <div className="w-full bg-[#F5F5F5] rounded-2xl p-6 md:p-8 mb-8">
            <div className="mb-2">
-             {/* Name changed to Lucy */}
              <span className="font-bold text-gray-900">Lucy</span>, <span className="text-gray-500 text-sm">Reino Unido</span>
            </div>
            <div className="flex gap-1 text-[#FFC107] mb-4">
@@ -296,16 +299,9 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
            <p className="text-sm text-gray-700 leading-relaxed mb-6 font-medium">
              A mi esposo y a mí nos encanta este Método. Nos ayuda a ambos a ser responsables. Hemos perdido 11 kilos. He logrado mi objetivo de pérdida de peso. Recibí respuestas a mis preguntas en una hora.
            </p>
-           {/* Image Placeholder for Testimonial */}
            <div className="w-full h-64 bg-gray-300 rounded-xl overflow-hidden relative">
-              <img 
-                src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                alt="Transformación" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
-                Resultados verificados
-              </div>
+              <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Transformación" className="w-full h-full object-cover" />
+              <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded">Resultados verificados</div>
            </div>
         </div>
 
@@ -314,7 +310,7 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
           onClick={handleCheckout}
           fullWidth
           className="py-4 text-xl shadow-xl mb-16 rounded-full border-none"
-          style={{ backgroundColor: '#00C853' }} // Vibrant Green
+          style={{ backgroundColor: '#00C853' }}
         >
           Obtener mi plan
         </Button>
@@ -322,95 +318,58 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
         {/* --- CUSTOMER REVIEWS LIST --- */}
         <div className="w-full bg-gray-50 rounded-2xl p-6 md:p-8 mb-12">
           <h3 className="font-bold text-gray-500 mb-6">Opiniones de clientes</h3>
-          
           <div className="flex flex-col gap-6">
-            
-            {/* Review 1 - Changed to Oscar */}
             <div className="bg-white p-4 rounded-xl shadow-sm">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
-                   <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Oscar" />
-                </div>
+                <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Oscar" /></div>
                 <div>
                   <span className="font-bold text-sm block text-blue-600">Oscar</span>
                   <span className="text-[10px] text-gray-400">recomienda el método Turbo-Quemador Carnívoro</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-700">
-                ¡Pérdida de peso! ¡Medidas perdidas! ¡Creo que nunca entenderás la sensación que tienes cuando por fin tienes el control! ¡Y te sientes saludable!
-              </p>
+              <p className="text-xs text-gray-700">¡Pérdida de peso! ¡Medidas perdidas! ¡Creo que nunca entenderás la sensación que tienes cuando por fin tienes el control! ¡Y te sientes saludable!</p>
             </div>
-
-            {/* Review 2 - Changed from Julio to Sammy */}
             <div className="bg-white p-4 rounded-xl shadow-sm">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
-                   <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sammy" />
-                </div>
+                <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sammy" /></div>
                 <div>
                   <span className="font-bold text-sm block text-blue-600">Sammy</span>
                   <span className="text-[10px] text-gray-400">recomienda el método Turbo-Quemador Carnívoro</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-700">
-                De verdad que disfruto comiendo como como, ya no tengo hambre todo el tiempo, no estoy deprimida ni tan ansiosa, tengo muchísima energía y he bajado 7 kilos en el primer mes. He encontrado tantos productos sin carbohidratos o bajos en carbohidratos que no me imagino comiendo como antes... nunca.
-              </p>
+              <p className="text-xs text-gray-700">De verdad que disfruto comiendo como como, ya no tengo hambre todo el tiempo, no estoy deprimida ni tan ansiosa, tengo muchísima energía y he bajado 7 kilos en el primer mes. He encontrado tantos productos sin carbohidratos o bajos en carbohidratos que no me imagino comiendo como antes... nunca.</p>
             </div>
-
-            {/* Review 3 */}
-             <div className="bg-white p-4 rounded-xl shadow-sm">
+            <div className="bg-white p-4 rounded-xl shadow-sm">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
-                   <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Irene" />
-                </div>
+                <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Irene" /></div>
                 <div>
                   <span className="font-bold text-sm block text-blue-600">Irene Cruz</span>
                   <span className="text-[10px] text-gray-400">recomienda el método Turbo-Quemador Carnívoro</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-700">
-                Perdí 28 libras y espero seguir alcanzando mi objetivo de 130 libras.
-              </p>
+              <p className="text-xs text-gray-700">Perdí 28 libras y espero seguir alcanzando mi objetivo de 130 libras.</p>
             </div>
-
           </div>
         </div>
 
         {/* --- SUMMARY FEATURES --- */}
-        <h2 className="text-xl font-bold text-center text-gray-900 mb-8">
-          ¡Obtén resultados visibles en 4 semanas!
-        </h2>
-        
+        <h2 className="text-xl font-bold text-center text-gray-900 mb-8">¡Obtén resultados visibles en 4 semanas!</h2>
         <div className="w-full grid grid-cols-2 gap-y-6 gap-x-4 mb-10">
            <div className="flex gap-3 items-start">
              <div className="bg-[#00C853] rounded-full p-0.5 mt-1 flex-shrink-0"><Check size={12} color="white" strokeWidth={4} /></div>
-             <div className="flex flex-col">
-               <span className="text-[10px] text-gray-500">Perfecto para</span>
-               <span className="text-xs font-bold text-gray-800">
-                 {isFemale ? 'Mujeres' : 'Hombres'} de todas las edades
-               </span>
-             </div>
+             <div className="flex flex-col"><span className="text-[10px] text-gray-500">Perfecto para</span><span className="text-xs font-bold text-gray-800">{isFemale ? 'Mujeres' : 'Hombres'} de todas las edades</span></div>
            </div>
            <div className="flex gap-3 items-start">
              <div className="bg-[#00C853] rounded-full p-0.5 mt-1 flex-shrink-0"><Check size={12} color="white" strokeWidth={4} /></div>
-             <div className="flex flex-col">
-               <span className="text-[10px] text-gray-500">Estilo de vida</span>
-               <span className="text-xs font-bold text-gray-800">Ligeramente activo</span>
-             </div>
+             <div className="flex flex-col"><span className="text-[10px] text-gray-500">Estilo de vida</span><span className="text-xs font-bold text-gray-800">Ligeramente activo</span></div>
            </div>
            <div className="flex gap-3 items-start">
              <div className="bg-[#00C853] rounded-full p-0.5 mt-1 flex-shrink-0"><Check size={12} color="white" strokeWidth={4} /></div>
-             <div className="flex flex-col">
-               <span className="text-[10px] text-gray-500">Meta</span>
-               <span className="text-xs font-bold text-gray-800">Perder peso</span>
-             </div>
+             <div className="flex flex-col"><span className="text-[10px] text-gray-500">Meta</span><span className="text-xs font-bold text-gray-800">Perder peso</span></div>
            </div>
            <div className="flex gap-3 items-start">
              <div className="bg-[#00C853] rounded-full p-0.5 mt-1 flex-shrink-0"><Check size={12} color="white" strokeWidth={4} /></div>
-             <div className="flex flex-col">
-               <span className="text-[10px] text-gray-500">Dieta</span>
-               <span className="text-xs font-bold text-gray-800">Sin restricciones dietéticas</span>
-             </div>
+             <div className="flex flex-col"><span className="text-[10px] text-gray-500">Dieta</span><span className="text-xs font-bold text-gray-800">Sin restricciones dietéticas</span></div>
            </div>
         </div>
 
@@ -422,7 +381,6 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
              <span className="font-bold">${prices[selectedPlan].original}</span>
            </div>
            <div className="flex justify-between text-sm mb-4">
-             {/* Updated Discount Text */}
              <span className="text-gray-900">55% de descuento en oferta de lanzamiento</span>
              <span className="font-bold text-[#00C853]">-${(prices[selectedPlan].original - prices[selectedPlan].current).toFixed(2)}</span>
            </div>
@@ -432,16 +390,12 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
            </div>
         </div>
 
-        {/* --- GUARANTEE (7 Days) --- */}
+        {/* --- GUARANTEE --- */}
         <div className="w-full bg-gray-100 rounded-xl p-6 flex gap-4 items-start mb-12">
            <div className="flex-1">
              <h4 className="font-bold text-sm mb-2 text-gray-900">Garantía de devolución del 100% del dinero</h4>
-             <p className="text-xs text-gray-500 leading-relaxed mb-4">
-               Confiamos en la calidad de nuestro servicio y en los resultados que ofrece. Si no obtiene resultados visibles en los primeros 7 días, puede solicitar un reembolso.
-             </p>
-             <p className="text-xs text-gray-500">
-               ¡Permítanos ayudarle a alcanzar sus objetivos de salud hoy!
-             </p>
+             <p className="text-xs text-gray-500 leading-relaxed mb-4">Confiamos en la calidad de nuestro servicio y en los resultados que ofrece. Si no obtiene resultados visibles en los primeros 7 días, puede solicitar un reembolso.</p>
+             <p className="text-xs text-gray-500">¡Permítanos ayudarle a alcanzar sus objetivos de salud hoy!</p>
            </div>
            <div className="w-16 h-16 rounded-full border-2 border-[#B71C1C] flex items-center justify-center text-[#B71C1C] font-bold text-[8px] text-center p-1 leading-tight transform rotate-[-15deg]">
              100% MONEY BACK GUARANTEE
