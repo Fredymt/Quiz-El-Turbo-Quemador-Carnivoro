@@ -132,3 +132,9 @@ export interface QuizState {
   progress: number; // 0 to 100
   answers: UserAnswers;
 }
+
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}

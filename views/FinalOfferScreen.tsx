@@ -30,6 +30,15 @@ export const FinalOfferScreen: React.FC<FinalOfferScreenProps> = ({ userAnswers,
 
   // --- CHECKOUT LOGIC ---
   const handleCheckout = () => {
+    // TRACK META INITIATE CHECKOUT
+    if (window.fbq) {
+      window.fbq('track', 'InitiateCheckout', {
+        content_name: selectedPlan === '4week' ? 'Plan 4 Semanas' : 'Plan 12 Semanas',
+        value: selectedPlan === '4week' ? 14.49 : 29.99,
+        currency: 'USD'
+      });
+    }
+
     if (selectedPlan === '4week') {
       window.location.href = 'https://pay.hotmart.com/T103355666X?checkoutMode=10';
     } else {
