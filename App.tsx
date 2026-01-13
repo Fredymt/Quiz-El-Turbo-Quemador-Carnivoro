@@ -36,22 +36,21 @@ const App: React.FC = () => {
   const [progress, setProgress] = useState<number>(0);
   const [answers, setAnswers] = useState<UserAnswers>({});
 
-  // Meta Pixel PageView Tracking on step change
+  // Meta Pixel Step Tracking
   useEffect(() => {
-    // Intentar disparar PageView, usando el objeto global si existe
-    const track = () => {
-      if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'PageView', { step: currentStep });
-      }
-    };
-    
-    // Disparar inmediatamente
-    track();
-    
-    // Re-intentar brevemente por si el script tardó en cargar
-    const timeout = setTimeout(track, 500);
-    return () => clearTimeout(timeout);
-  }, [currentStep]);
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      // Disparamos un PageView genérico
+      (window as any).fbq('track', 'PageView');
+      
+      // Disparamos un evento personalizado para saber en qué paso exacto está el usuario
+      (window as any).fbq('trackCustom', 'QuizStep', { 
+        step_name: currentStep,
+        progress: progress 
+      });
+      
+      console.log(`[Meta Pixel] Evento enviado para el paso: ${currentStep}`);
+    }
+  }, [currentStep, progress]);
 
   // Navigation Handlers
   const handleStartQuiz = () => {
